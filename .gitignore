@@ -1,0 +1,28 @@
+node_modules
+target/
+.mvn/wrapper/maven-wrapper.jar
+
+src/main/frontend/generated
+src/main/frontend/index.html
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
+
+
+### Trainer material ###
+docs/commerce_case_study.md
