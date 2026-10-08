@@ -1,0 +1,52 @@
+@startuml Use Cases Overview
+left to right direction
+
+actor "Buyer" as buyer
+actor "Purchasing Manager" as pm
+actor "Sales Representative" as sales
+actor "Customer Service" as cs
+
+rectangle "Alpenfeld B2B Ordering Portal" {
+    usecase "UC-001\nSearch Products" as UC001
+    usecase "UC-002\nPlace Order" as UC002
+    usecase "UC-003\nView Orders" as UC003
+    usecase "UC-004\nRequest Quote" as UC004
+    usecase "UC-005\nRequest Return" as UC005
+    usecase "UC-006\nApprove Order" as UC006
+    usecase "UC-007\nAdd Buyer" as UC007
+    usecase "UC-008\nDeactivate Buyer" as UC008
+    usecase "UC-009\nAnswer Quote Request" as UC009
+    usecase "UC-010\nView Key Accounts" as UC010
+    usecase "UC-011\nProcess Return" as UC011
+    usecase "UC-012\nLook Up Orders" as UC012
+}
+
+actor "PIM" as pim <<system>>
+actor "ERP" as erp <<system>>
+
+buyer --> UC001
+buyer --> UC002
+buyer --> UC003
+buyer --> UC004
+buyer --> UC005
+
+pm --> UC006
+pm --> UC007
+pm --> UC008
+
+sales --> UC009
+sales --> UC010
+
+cs --> UC011
+cs --> UC012
+
+UC001 --> pim
+UC001 --> erp
+UC002 --> erp
+UC006 --> erp
+
+note "Product data, Contract Prices and Stock are read\nfrom the Portal Copy (hourly Refresh).\nAccepted Orders reach the ERP through Order Transfer,\nexactly once, as soon as the ERP is available." as N1
+N1 .. pim
+N1 .. erp
+
+@enduml
