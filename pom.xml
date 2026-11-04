@@ -23,7 +23,7 @@
         <groovy-maven-plugin.version>2.1.1</groovy-maven-plugin.version>
 
         <playwright.version>1.63.0</playwright.version>
-        <mopo.version>0.0.6</mopo.version>
+        <mopo.version>0.0.7</mopo.version>
         <archunit.version>1.4.1</archunit.version>
         <jacoco.version>0.8.14</jacoco.version>
 
