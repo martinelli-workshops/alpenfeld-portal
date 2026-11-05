@@ -7,7 +7,7 @@
 **Primary Actor:** Buyer  
 **Goal:** Find the Products that match a search so that the Buyer can choose one to view or order  
 **Trigger:** Buyer requests a product search  
-**Status:** Draft  
+**Status:** Approved  
 
 **Requirements:** [FR-001, FR-003, FR-012, C-001, C-002, C-003, C-004](../requirements.md)
 
