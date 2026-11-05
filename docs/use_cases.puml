@@ -1,0 +1,54 @@
+@startuml Use Cases Overview
+left to right direction
+
+actor "Buyer" as buyer
+actor "Purchasing Manager" as pm
+actor "Sales Representative" as sales
+actor "Customer Service" as cs
+
+actor "PIM" as pim
+actor "ERP" as erp
+
+rectangle "Alpenfeld B2B Ordering Portal" {
+    usecase "UC-001\nFind Product" as UC001
+    usecase "UC-002\nView Product Details" as UC002
+    usecase "UC-003\nPlace Order" as UC003
+    usecase "UC-004\nApprove Order" as UC004
+    usecase "UC-005\nManage Buyers" as UC005
+    usecase "UC-006\nRequest Quote" as UC006
+    usecase "UC-007\nAnswer Quote Request" as UC007
+    usecase "UC-008\nSubmit Return Request" as UC008
+    usecase "UC-009\nHandle Return Request" as UC009
+    usecase "UC-010\nLook Up Order" as UC010
+}
+
+buyer --> UC001
+buyer --> UC002
+buyer --> UC003
+buyer --> UC006
+buyer --> UC008
+
+pm --> UC004
+pm --> UC005
+
+sales --> UC007
+
+cs --> UC009
+cs --> UC010
+
+UC001 --> pim
+UC002 --> pim
+UC002 --> erp
+UC003 --> erp
+
+note right of erp
+  Product data, Contract Prices, and Stock
+  are read from the portal's hourly copies
+  (C-003, C-004), so UC-001, UC-002, and
+  UC-003 work while the PIM or ERP is down
+  (FR-012). Orders placed during an ERP
+  outage are transferred once it is
+  available (FR-013).
+end note
+
+@enduml
