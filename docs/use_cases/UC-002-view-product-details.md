@@ -7,7 +7,7 @@
 **Primary Actor:** Buyer  
 **Goal:** See the details, images, Contract Price, and Stock of a Product so that the Buyer can decide whether to order it  
 **Trigger:** Buyer requests the details of a Product  
-**Status:** Draft  
+**Status:** Approved  
 
 **Requirements:** [FR-002, FR-003, FR-012, C-001, C-002, C-003, C-004](../requirements.md)
 
@@ -53,7 +53,8 @@
 
 ### A4: Product Without Contract Price
 
-**Trigger:** The Product has no Contract Price for the Buyer's Business Customer (step 5)  
+**Trigger:** The Product has no Contract Price for the Buyer's Business Customer and its Stock is not zero (step 5)
+
 **Flow:**
 
 1. System marks the Product as having no Contract Price and offers the Buyer to request a quote (UC-006) (BR-005).
@@ -62,11 +63,22 @@
 
 ### A5: Product Out of Stock
 
-**Trigger:** The Stock of the Product is zero (step 5)  
+**Trigger:** The Stock of the Product is zero and it has a Contract Price for the Buyer's Business Customer (step 5)
+
 **Flow:**
 
-1. System displays the Product as out of stock (BR-006).
+1. System displays the Product as out of stock with its Contract Price, each with the time of the portal's latest copy (BR-006).
 2. Use case continues at step 6.
+
+### A6: Product Without Contract Price and Out of Stock
+
+**Trigger:** The Product has no Contract Price for the Buyer's Business Customer and its Stock is zero (step 5)
+
+**Flow:**
+
+1. System marks the Product as having no Contract Price and offers the Buyer to request a quote (UC-006) (BR-005).
+2. System displays the Product as out of stock with the time of the portal's latest Stock copy (BR-006).
+3. Use case continues at step 6.
 
 ## Postconditions
 
