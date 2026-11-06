@@ -75,7 +75,7 @@
 
 ### BR-001: Minimum Search Term Length
 
-A search term must contain at least 2 characters.
+A search term must contain at least 2 characters. Spaces at the beginning and at the end of the search term do not count.
 
 ### BR-002: Search Fields
 
