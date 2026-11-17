@@ -1,0 +1,78 @@
+@startuml Use Cases Overview
+left to right direction
+
+actor "Buyer" as buyer
+actor "Purchasing Manager" as pm
+actor "Sales Representative" as sales
+actor "Customer Service" as cs
+actor "Scheduler" as scheduler <<system>>
+
+actor "PIM" as pim <<system>>
+actor "ERP" as erp <<system>>
+
+rectangle "Alpenfeld B2B Ordering Portal" {
+    ' Buyer
+    usecase "UC-001\nFind Product" as UC001
+    usecase "UC-002\nEdit Cart" as UC002
+    usecase "UC-003\nPlace Order" as UC003
+    usecase "UC-004\nView Order History" as UC004
+    usecase "UC-005\nRequest Quote" as UC005
+    usecase "UC-006\nAccept Quote" as UC006
+    usecase "UC-007\nRequest Return" as UC007
+    usecase "UC-008\nTrack Return" as UC008
+
+    ' Purchasing Manager
+    usecase "UC-009\nApprove Order" as UC009
+    usecase "UC-010\nAdd Buyer" as UC010
+    usecase "UC-011\nDeactivate Buyer" as UC011
+    usecase "UC-012\nSet Order Limit" as UC012
+
+    ' Sales Representative
+    usecase "UC-013\nAnswer Quote Request" as UC013
+    usecase "UC-014\nView Key Account Activity" as UC014
+
+    ' Customer Service
+    usecase "UC-015\nProcess Return" as UC015
+    usecase "UC-016\nLook Up Customer Orders" as UC016
+
+    ' Synchronization and Order Transfer
+    usecase "UC-017\nSynchronize Product Data" as UC017
+    usecase "UC-018\nSynchronize Prices and Stock" as UC018
+    usecase "UC-019\nTransfer Order to ERP" as UC019
+}
+
+buyer --> UC001
+buyer --> UC002
+buyer --> UC003
+buyer --> UC004
+buyer --> UC005
+buyer --> UC006
+buyer --> UC007
+buyer --> UC008
+
+pm --> UC009
+pm --> UC010
+pm --> UC011
+pm --> UC012
+
+sales --> UC013
+sales --> UC014
+
+cs --> UC015
+cs --> UC016
+
+scheduler --> UC017
+scheduler --> UC018
+scheduler --> UC019
+
+UC017 --> pim
+UC018 --> erp
+UC019 --> erp
+
+note right of UC019
+  Transfers every Placed Order
+  (from UC-003, UC-006, or UC-009)
+  exactly once, retried after an ERP outage.
+end note
+
+@enduml
