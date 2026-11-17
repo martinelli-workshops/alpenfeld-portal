@@ -20,6 +20,7 @@ rectangle "Alpenfeld B2B Ordering Portal" {
     usecase "UC-006\nAccept Quote" as UC006
     usecase "UC-007\nRequest Return" as UC007
     usecase "UC-008\nTrack Return" as UC008
+    usecase "UC-020\nAdd Product to Cart" as UC020
 
     ' Purchasing Manager
     usecase "UC-009\nApprove Order" as UC009
@@ -49,6 +50,7 @@ buyer --> UC005
 buyer --> UC006
 buyer --> UC007
 buyer --> UC008
+buyer --> UC020
 
 pm --> UC009
 pm --> UC010
