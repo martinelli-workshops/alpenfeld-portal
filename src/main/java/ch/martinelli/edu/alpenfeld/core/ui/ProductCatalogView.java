@@ -8,10 +8,10 @@ import java.util.Locale;
 import ch.martinelli.edu.alpenfeld.core.catalog.CatalogSearchResult;
 import ch.martinelli.edu.alpenfeld.core.catalog.ProductCatalogItem;
 import ch.martinelli.edu.alpenfeld.core.catalog.ProductCatalogService;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
@@ -25,8 +25,8 @@ public class ProductCatalogView extends VerticalLayout {
     private final ProductCatalogService catalogService;
     private final TextField searchField = new TextField("Search products");
     private final Grid<ProductCatalogItem> productsGrid = new Grid<>();
-    private final Text catalogUnavailable = new Text("The product catalog is unavailable.");
-    private final Text noMatchingProducts = new Text("No products match your search.");
+    private final Span catalogUnavailable = new Span("The product catalog is unavailable.");
+    private final Span noMatchingProducts = new Span("No products match your search.");
     private final VerticalLayout productDetails = new VerticalLayout();
 
     public ProductCatalogView(ProductCatalogService catalogService) {

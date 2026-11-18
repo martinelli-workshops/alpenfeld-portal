@@ -1,10 +1,8 @@
 package ch.martinelli.edu.alpenfeld.core.catalog;
 
-import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.vaadin.flow.server.VaadinRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,20 +10,18 @@ import org.springframework.transaction.annotation.Transactional;
 public class ProductCatalogService {
 
     private final ProductCatalogRepository repository;
+    private final CurrentBuyerIdentity currentBuyerIdentity;
 
-    public ProductCatalogService(ProductCatalogRepository repository) {
+    public ProductCatalogService(ProductCatalogRepository repository, CurrentBuyerIdentity currentBuyerIdentity) {
         this.repository = repository;
+        this.currentBuyerIdentity = currentBuyerIdentity;
     }
 
     @Transactional(readOnly = true)
     public CatalogSearchResult browse(String searchTerm) {
-        VaadinRequest request = VaadinRequest.getCurrent();
-        Principal principal = request == null ? null : request.getUserPrincipal();
-        if (principal == null || principal.getName() == null || principal.getName().isBlank()) {
-            throw new SecurityException("An authenticated Buyer is required.");
-        }
-
-        String email = principal.getName();
+        String email = currentBuyerIdentity.email()
+                .filter(value -> !value.isBlank())
+                .orElseThrow(() -> new SecurityException("An authenticated Buyer is required."));
         BuyerContext buyer = repository.findActiveBuyerByEmail(email)
                 .orElseThrow(() -> new SecurityException("The authenticated account is not an active Buyer."));
 
