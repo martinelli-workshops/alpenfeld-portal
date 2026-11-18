@@ -1,0 +1,44 @@
+@startuml Use Cases Overview
+left to right direction
+
+actor "Buyer" as buyer
+actor "Purchasing Manager" as purchasingManager
+actor "Sales Representative" as salesRepresentative
+actor "Customer Service" as customerService
+actor "PIM" as pim
+actor "ERP" as erp
+
+rectangle "Alpenfeld B2B Ordering Portal" {
+    ' FR-001, FR-002, FR-010, FR-011
+    usecase "UC-001\nBrowse Products and Prices" as UC001
+    ' FR-003, FR-012
+    usecase "UC-002\nPlace an Order" as UC002
+    ' FR-004
+    usecase "UC-003\nApprove or Reject an Order" as UC003
+    ' FR-005
+    usecase "UC-004\nManage Customer Buyers" as UC004
+    ' FR-006
+    usecase "UC-005\nRequest a Large-Quantity Quote" as UC005
+    ' FR-007
+    usecase "UC-006\nPrepare a Quote Response" as UC006
+    ' FR-008
+    usecase "UC-007\nRequest a Product Return" as UC007
+    ' FR-009
+    usecase "UC-008\nReview a Return Request" as UC008
+}
+
+buyer --> UC001
+buyer --> UC002
+buyer --> UC005
+buyer --> UC007
+purchasingManager --> UC003
+purchasingManager --> UC004
+salesRepresentative --> UC006
+salesRepresentative --> UC005
+customerService --> UC008
+customerService --> UC007
+pim --> UC001
+erp --> UC001
+erp --> UC002
+
+@enduml
